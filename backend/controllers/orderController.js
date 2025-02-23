@@ -1,3 +1,4 @@
+import { response } from "express";
 import orderModel from "../models/orderModel.js";
 import userModel from "../models/userModel.js";
 
@@ -39,7 +40,13 @@ const placeOrderRazorpay = async (req, res) => {
 
 // All Orders data for Admin Panel
 const allOrders = async(req, res) => {
-
+    try {
+        const orders = await orderModel.find({});
+        res.json({success: true, orders});
+    } catch (error) {
+        console.log(error);
+        res.json({success: false, message: error.message});
+    }
 }
 
 // All Orders data for frontend
@@ -56,7 +63,14 @@ const userOrders = async(req, res) => {
 
 // Update order status from Admin
 const updateStatus = async(req, res) => {
-    
+    try {
+        const { orderId, status } = req.body;
+        await orderModel.findByIdAndUpdate(orderId, { status });
+        response.json({success: true, message: 'Status updated'});
+    } catch (error) {
+        console.log(error);
+        res.json({success: false, message: error.message});
+    }
 }
 
 export { placeOrder, placeOrderRazorpay, placeOrderStriped, allOrders, userOrders, updateStatus}
