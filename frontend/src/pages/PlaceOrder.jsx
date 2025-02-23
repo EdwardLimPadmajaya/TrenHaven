@@ -65,6 +65,32 @@ const PlaceOrder = () => {
             toast.error(response.data.message);
           }
           break;
+
+          case 'stripe':
+            try {
+              const responseStripe = await axios.post(
+                backendUrl + '/api/order/stripe',
+                orderData,
+                { headers: { token } }
+              );
+          
+              console.log(responseStripe.data);
+          
+              if (responseStripe.data.success) {
+                const { session_url } = responseStripe.data;
+                if (session_url) {
+                  window.location.href = session_url;
+                } else {
+                  toast.error('Failed to get session URL');
+                }
+              } else {
+                toast.error(responseStripe.data.message);
+              }
+            } catch (error) {
+              console.error(error);
+              toast.error('Payment failed, please try again.');
+            }
+            break;          
         default:
           break;
       }
