@@ -10,7 +10,6 @@ const deliveryCharge = 10;
 // Gateway initialize
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-
 // Placing order using COD Method
 const placeOrder = async (req, res) => {
     try {
@@ -107,11 +106,6 @@ const verifyStripe = async (req, res) => {
     }
 }
 
-// Placing order using Razorpay Method
-const placeOrderRazorpay = async (req, res) => {
-    
-}
-
 // All Orders data for Admin Panel
 const allOrders = async(req, res) => {
     try {
@@ -147,4 +141,4 @@ const updateStatus = async(req, res) => {
     }
 }
 
-export { placeOrder, placeOrderRazorpay, placeOrderStripe, allOrders, userOrders, updateStatus, verifyStripe}
+export { placeOrder, placeOrderStripe, allOrders, userOrders, updateStatus, verifyStripe}
