@@ -49,7 +49,7 @@ TrenHaven/
 
 ### 1. Clone the Repository
 ```sh
-git clone https://github.com/your-repo/trenhaven.git
+git clone https://github.com/EdwardLimPadmajaya/trenhaven.git
 cd trenhaven
 ```
 
