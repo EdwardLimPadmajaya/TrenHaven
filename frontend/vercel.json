@@ -1,26 +1,19 @@
 {
     "rewrites": [
-      {
+    {
         "source": "/(.*)",
         "destination": "/index.html"
-      }
+    }
     ],
     "builds": [
-      {
+    {
         "src": "package.json",
         "use": "@vercel/static-build",
         "config": {
-          "distDir": "dist",
-          "installCommand": "npm install --prefer-offline"
+        "distDir": "dist",
+        "installCommand": "npm ci",
+        "buildCommand": "npm run build"
         }
-      }
-    ],
-    "headers": [
-      {
-        "source": "/(.*)",
-        "headers": [
-          { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
-        ]
-      }
+    }
     ]
-  }
+}
